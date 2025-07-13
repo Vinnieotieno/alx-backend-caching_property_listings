@@ -3,14 +3,22 @@ version: "3.9"
 services:
   postgres:
     image: postgres:latest
-    environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: property_db
     ports:
       - "5432:5432"
+    environment:
+      POSTGRES_DB: alx_db
+      POSTGRES_USER: alx_user
+      POSTGRES_PASSWORD: alx_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
   redis:
     image: redis:latest
     ports:
       - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:
